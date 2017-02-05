@@ -27,3 +27,13 @@ let tests =
       convertHtml "some\tstring"
       |> isEqualTo "some    string"
   ]
+
+[<Tests>]
+let colors =
+  let esc = "\u001B"
+
+  testList "colors" [
+    testCase "red" <| fun () ->
+      convertHtml esc + "[31;mred"
+      |> isEqualTo """<span style="color: red">red</span>"""
+  ]
