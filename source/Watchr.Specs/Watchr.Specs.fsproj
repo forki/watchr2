@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+﻿<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <Name>Watchr.Specs</Name>
@@ -42,7 +42,14 @@
     <Reference Include="System.Numerics" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="../Watchr.Core/Watchr.Core.fsproj">
+      <Name>Watchr.Core.fsproj</Name>
+      <Project>{2ccd4d6d-e523-4fb8-8ab2-f7805beeacad}</Project>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
     <None Include="App.config" />
+    <Compile Include="Helper.fs" />
     <Compile Include="Ansi/Simple.fs" />
     <Compile Include="Watchr.Specs.fs" />
   </ItemGroup>

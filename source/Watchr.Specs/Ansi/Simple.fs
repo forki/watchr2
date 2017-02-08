@@ -1,12 +1,8 @@
 module Ansi
 
 open Expecto
-
-let convertHtml (x:string) =
-  x.Replace("\t", "    ")
-
-let isEqualTo left right =
-  Expect.equal left right "egal"
+open Helper
+open Ansi
 
 [<Tests>]
 let tests =
@@ -23,17 +19,21 @@ let tests =
       convertHtml "some string"
       |> isEqualTo "some string"
 
+    testCase "unicode characters" <| fun () ->
+      convertHtml "a🍻bc"
+      |> isEqualTo "a🍻bc"
+
     testCase "tabs" <| fun () ->
       convertHtml "some\tstring"
-      |> isEqualTo "some    string"
+      |> isEqualTo "some  string"
   ]
 
 [<Tests>]
 let colors =
-  let esc = "\u001B"
+  let esc = "\u001b"
 
   testList "colors" [
     testCase "red" <| fun () ->
-      convertHtml esc + "[31;mred"
+      convertHtml (esc + "[31mred")
       |> isEqualTo """<span style="color: red">red</span>"""
   ]
