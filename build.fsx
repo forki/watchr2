@@ -23,10 +23,9 @@ let build() =
 Target "Build" (fun _ -> build())
 
 let runTests() =
-  let args = { ExpectoParams.DefaultParams with FailOnFocusedTests = false }
 
   !! (buildDir + "*.Specs.exe")
-  |> Expecto id
+  |> Expecto (fun p -> { p with FailOnFocusedTests = false })
 
 Target "Test" (fun _ -> runTests())
 
